@@ -1,7 +1,8 @@
-import 'package:block_test/bloc/counter_bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:block_test/screens/home_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:block_test/bloc/login/login_bloc.dart';
+import 'package:block_test/bloc/counter/counter_bloc.dart';
+import 'package:block_test/screens/login/login_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,15 +13,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => CounterBloc(),
+    return MultiBlocProvider(
+      providers: [BlocProvider(create: (context) => LoginBloc())],
       child: MaterialApp(
-        title: 'Flutter Demo',
+        title: 'Bloc Login App',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         ),
-        home: HomeScreen(),
+        home: LoginScreen(),
       ),
     );
   }

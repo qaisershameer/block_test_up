@@ -8,7 +8,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState>{
 
   final _authRepo = AuthRepo();
 
-  LoginBloc() : super(LoginState(isLoading: false)){
+  LoginBloc() : super(LoginState(isLoading: false, isSuccess: false)){
 
     on<LoginUserEvent>(_loginUser);
 
@@ -19,7 +19,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState>{
     try {
 
       /// Start Loading
-      emit(state.copyWith(isLoading: true));
+      emit(state.copyWith(isLoading: true, isSuccess: false));
 
       // login user
       await _authRepo.loginUser(event.userName, event.password);
@@ -27,7 +27,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState>{
       print('Success');
 
       // stop loading
-      emit(state.copyWith(isLoading: false));
+      emit(state.copyWith(isLoading: false, isSuccess: true));
 
     } catch (e) {
       debugPrint('Error while login: $e');

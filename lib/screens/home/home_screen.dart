@@ -9,45 +9,53 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            BlocBuilder<CounterBloc, CounterState>(
-              builder: (context, state) {
-                return Text(
-                  state.counter.toString(),
-                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-                );
-              },
-            ),
 
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
+    /// [Scaffold]
+    return  Scaffold(
+        body: Center(
 
-                // Increment Button
-                ElevatedButton(
-                  onPressed: () {
-                    context.read<CounterBloc>().add(IncrementEvent());
-                  },
-                  child: Text('Tap + Bloc'),
-                ),
+          /// [Column]
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
 
-                // Gap
-                SizedBox(width: 16),
+              /// [Bloc Builder]
+              BlocBuilder<CounterBloc, CounterState>(
+                builder: (context, state) {
+                  return Text(
+                    state.counter.toString(),
+                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                  );
+                },
+              ),
 
-                // Decrement Button
-                ElevatedButton(onPressed: () {
-                  context.read<CounterBloc>().add(DecrementEvent());
-                }, child: Text('Tap - Bloc')),
+              /// [Row]
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
 
-              ],
-            ),
-          ],
+                  // Increment Button
+                  ElevatedButton(
+                    onPressed: () {
+                      context.read<CounterBloc>().add(IncrementEvent());
+                    },
+                    child: Text('Tap + Bloc'),
+                  ),
+
+                  // Gap
+                  SizedBox(width: 16),
+
+                  // Decrement Button
+                  ElevatedButton(onPressed: () {
+                    context.read<CounterBloc>().add(DecrementEvent());
+                  }, child: Text('Tap - Bloc')),
+
+                ],
+              ),
+            ],
+          ),
         ),
-      ),
-    );
+      );
+
   }
 }

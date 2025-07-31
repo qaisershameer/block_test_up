@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:block_test/bloc/login/login_bloc.dart';
-import 'package:block_test/bloc/counter/counter_bloc.dart';
 import 'package:block_test/screens/login/login_screen.dart';
 
 void main() {
